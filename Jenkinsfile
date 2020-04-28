@@ -48,6 +48,7 @@ pipeline {
 @NonCPS
 def stopCurrentBuild() {
     Jenkins.instance.getItemByFullName(env.JOB_NAME).getLastBuild().doStop()
+    sleep(time: 1, unit: "MINUTES")
 }
 
 @NonCPS
