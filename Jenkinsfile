@@ -9,7 +9,6 @@ pipeline {
         choice(name: "CHANNEL", choices: ["nightly", "dev", "beta", "release", "development"])
         choice(name: "BUILD_TYPE", choices: ["Release", "Debug"])
         booleanParam(name: "WIPE_WORKSPACE", defaultValue: false)
-        booleanParam(name: "DISABLE_GIT_CACHE", defaultValue: false)
         booleanParam(name: "SKIP_INIT", defaultValue: false)
         booleanParam(name: "DISABLE_SCCACHE", defaultValue: false)
         booleanParam(name: "SKIP_SIGNING", defaultValue: true)
@@ -65,7 +64,6 @@ def setEnv() {
     CHANNEL = params.CHANNEL
     BUILD_TYPE = params.BUILD_TYPE
     WIPE_WORKSPACE = params.WIPE_WORKSPACE
-    DISABLE_GIT_CACHE = params.DISABLE_GIT_CACHE
     SKIP_INIT = params.SKIP_INIT
     DISABLE_SCCACHE = params.DISABLE_SCCACHE
     SKIP_SIGNING = params.SKIP_SIGNING
@@ -161,7 +159,6 @@ def startBraveBrowserBuild() {
                 choiceParam("CHANNEL", ["nightly", "dev", "beta", "release", "development"])
                 choiceParam("BUILD_TYPE", ["Release", "Debug"])
                 booleanParam("WIPE_WORKSPACE", false)
-                booleanParam("DISABLE_GIT_CACHE", false)
                 booleanParam("SKIP_INIT", false)
                 booleanParam("DISABLE_SCCACHE", false)
                 booleanParam("SKIP_SIGNING", true)
@@ -212,7 +209,6 @@ def startBraveBrowserBuild() {
         string(name: "BRANCH_PRODUCTIVITY_DESCRIPTION", value: BRANCH_PRODUCTIVITY_DESCRIPTION),
         string(name: "BRANCH_PRODUCTIVITY_USER", value: BRANCH_PRODUCTIVITY_USER),
         booleanParam(name: "WIPE_WORKSPACE", value: WIPE_WORKSPACE),
-        booleanParam(name: "DISABLE_GIT_CACHE", value: DISABLE_GIT_CACHE),
         booleanParam(name: "SKIP_INIT", value: SKIP_INIT),
         booleanParam(name: "DISABLE_SCCACHE", value: DISABLE_SCCACHE),
         booleanParam(name: "SKIP_SIGNING", value: SKIP_SIGNING),
