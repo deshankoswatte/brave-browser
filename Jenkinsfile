@@ -6,8 +6,8 @@ pipeline {
         timestamps()
     }
     parameters {
-        choice("CHANNEL", ["nightly", "dev", "beta", "release", "development"])
-        choice("BUILD_TYPE", ["Release", "Debug"])
+        choice(name: "CHANNEL", choices: ["nightly", "dev", "beta", "release", "development"])
+        choice(name: "BUILD_TYPE", choices: ["Release", "Debug"])
         booleanParam("WIPE_WORKSPACE", defaultValue: false)
         booleanParam(name: "DISABLE_GIT_CACHE", defaultValue: false)
         booleanParam(name: "SKIP_INIT", defaultValue: false)
