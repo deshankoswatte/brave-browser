@@ -158,8 +158,8 @@ def startBraveBrowserBuild() {
         pipelineJob("brave-browser-build-pr-${BRAVE_BROWSER_BRANCH}") {
             // this list has to match the parameters in Jenkinsfile from the devops repo
             parameters {
-                choice(name: "CHANNEL", choices: ["nightly", "dev", "beta", "release", "development"], description: "")
-                choice(name: "BUILD_TYPE", choices: ["Release", "Debug"], description: "")
+                choiceParam(name: "CHANNEL", choices: ["nightly", "dev", "beta", "release", "development"], description: "")
+                choiceParam(name: "BUILD_TYPE", choices: ["Release", "Debug"], description: "")
                 booleanParam(name: "WIPE_WORKSPACE", defaultValue: false, description: "")
                 booleanParam(name: "DISABLE_GIT_CACHE", defaultValue: false, description: "")
                 booleanParam(name: "SKIP_INIT", defaultValue: false, description: "")
@@ -172,15 +172,15 @@ def startBraveBrowserBuild() {
                 booleanParam(name: "SKIP_LINUX", defaultValue: false, description: "")
                 booleanParam(name: "SKIP_MACOS", defaultValue: false, description: "")
                 booleanParam(name: "SKIP_WINDOWS", defaultValue: false, description: "")
-                string(name: "BRAVE_BROWSER_BRANCH", defaultValue: "master", description: "")
-                string(name: "BRAVE_CORE_BRANCH", defaultValue: "master", description: "")
-                string(name: "BASE_BRANCH", defaultValue: "master", description: "")
-                string(name: "SLACK_USERNAME", defaultValue: "", description: "")
-                string(name: "SLACK_BUILDS_CHANNEL", defaultValue: "", description: "")
-                string(name: "BRANCH_PRODUCTIVITY_HOMEPAGE", defaultValue: "", description: "")
-                string(name: "BRANCH_PRODUCTIVITY_NAME", defaultValue: "", description: "")
-                string(name: "BRANCH_PRODUCTIVITY_DESCRIPTION", defaultValue: "", description: "")
-                string(name: "BRANCH_PRODUCTIVITY_USER", defaultValue: "", description: "")
+                stringParam(name: "BRAVE_BROWSER_BRANCH", defaultValue: "master", description: "")
+                stringParam(name: "BRAVE_CORE_BRANCH", defaultValue: "master", description: "")
+                stringParam(name: "BASE_BRANCH", defaultValue: "master", description: "")
+                stringParam(name: "SLACK_USERNAME", defaultValue: "", description: "")
+                stringParam(name: "SLACK_BUILDS_CHANNEL", defaultValue: "", description: "")
+                stringParam(name: "BRANCH_PRODUCTIVITY_HOMEPAGE", defaultValue: "", description: "")
+                stringParam(name: "BRANCH_PRODUCTIVITY_NAME", defaultValue: "", description: "")
+                stringParam(name: "BRANCH_PRODUCTIVITY_DESCRIPTION", defaultValue: "", description: "")
+                stringParam(name: "BRANCH_PRODUCTIVITY_USER", defaultValue: "", description: "")
             }
             definition {
                 cpsScm {
@@ -200,8 +200,8 @@ def startBraveBrowserBuild() {
         }
     """)
     params = [
-        string(name: "CHANNEL", value: CHANNEL),
-        string(name: "BUILD_TYPE", value: BUILD_TYPE),
+        choice(name: "CHANNEL", value: CHANNEL),
+        choice(name: "BUILD_TYPE", value: BUILD_TYPE),
         string(name: "BRAVE_BROWSER_BRANCH", value: BRAVE_BROWSER_BRANCH),
         string(name: "BRAVE_CORE_BRANCH", value: BRAVE_CORE_BRANCH),
         string(name: "BASE_BRANCH", value: BASE_BRANCH),
