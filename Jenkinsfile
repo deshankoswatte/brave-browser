@@ -200,8 +200,8 @@ def startBraveBrowserBuild() {
         }
     """)
     params = [
-        choice(name: "CHANNEL", value: CHANNEL),
-        choice(name: "BUILD_TYPE", value: BUILD_TYPE),
+        string(name: "CHANNEL", value: CHANNEL),
+        string(name: "BUILD_TYPE", value: BUILD_TYPE),
         string(name: "BRAVE_BROWSER_BRANCH", value: BRAVE_BROWSER_BRANCH),
         string(name: "BRAVE_CORE_BRANCH", value: BRAVE_CORE_BRANCH),
         string(name: "BASE_BRANCH", value: BASE_BRANCH),
