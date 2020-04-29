@@ -156,9 +156,31 @@ def checkAndAbortBuild() {
 def startBraveBrowserBuild() {
     jobDsl(scriptText: """
         pipelineJob("brave-browser-build-pr-${BRAVE_BROWSER_BRANCH}") {
+            // this list has to match the parameters in Jenkinsfile from the devops repo
             parameters {
-                booleanParam('FLAG', true)
-                choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
+                choice(name: "CHANNEL", choices: ["nightly", "dev", "beta", "release", "development"], description: "")
+                choice(name: "BUILD_TYPE", choices: ["Release", "Debug"], description: "")
+                booleanParam(name: "WIPE_WORKSPACE", defaultValue: false, description: "")
+                booleanParam(name: "DISABLE_GIT_CACHE", defaultValue: false, description: "")
+                booleanParam(name: "SKIP_INIT", defaultValue: false, description: "")
+                booleanParam(name: "DISABLE_SCCACHE", defaultValue: false, description: "")
+                booleanParam(name: "SKIP_SIGNING", defaultValue: true, description: "")
+                booleanParam(name: "DCHECK_ALWAYS_ON", defaultValue: true, description: "")
+                booleanParam(name: "RUN_NETWORK_AUDIT", defaultValue: false, description: "")
+                booleanParam(name: "SKIP_ANDROID", defaultValue: false, description: "")
+                booleanParam(name: "SKIP_IOS", defaultValue: false, description: "")
+                booleanParam(name: "SKIP_LINUX", defaultValue: false, description: "")
+                booleanParam(name: "SKIP_MACOS", defaultValue: false, description: "")
+                booleanParam(name: "SKIP_WINDOWS", defaultValue: false, description: "")
+                string(name: "BRAVE_BROWSER_BRANCH", defaultValue: "master", description: "")
+                string(name: "BRAVE_CORE_BRANCH", defaultValue: "master", description: "")
+                string(name: "BASE_BRANCH", defaultValue: "master", description: "")
+                string(name: "SLACK_USERNAME", defaultValue: "", description: "")
+                string(name: "SLACK_BUILDS_CHANNEL", defaultValue: "", description: "")
+                string(name: "BRANCH_PRODUCTIVITY_HOMEPAGE", defaultValue: "", description: "")
+                string(name: "BRANCH_PRODUCTIVITY_NAME", defaultValue: "", description: "")
+                string(name: "BRANCH_PRODUCTIVITY_DESCRIPTION", defaultValue: "", description: "")
+                string(name: "BRANCH_PRODUCTIVITY_USER", defaultValue: "", description: "")
             }
             definition {
                 cpsScm {
