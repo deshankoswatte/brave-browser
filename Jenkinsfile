@@ -7,8 +7,8 @@ pipeline {
     }
     parameters {
         choice("CHANNEL", ["nightly", "dev", "beta", "release", "development"])
-        choice(name: "BUILD_TYPE", choices: ["Release", "Debug"])
-        booleanParam(name: "WIPE_WORKSPACE", defaultValue: false)
+        choice("BUILD_TYPE", ["Release", "Debug"])
+        booleanParam("WIPE_WORKSPACE", defaultValue: false)
         booleanParam(name: "DISABLE_GIT_CACHE", defaultValue: false)
         booleanParam(name: "SKIP_INIT", defaultValue: false)
         booleanParam(name: "DISABLE_SCCACHE", defaultValue: false)
