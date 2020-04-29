@@ -158,8 +158,8 @@ def startBraveBrowserBuild() {
         pipelineJob("brave-browser-build-pr-${BRAVE_BROWSER_BRANCH}") {
             // this list has to match the parameters in Jenkinsfile from the devops repo
             parameters {
-                choiceParam(name: "CHANNEL", choices: ["nightly", "dev", "beta", "release", "development"], description: "")
-                choiceParam(name: "BUILD_TYPE", choices: ["Release", "Debug"], description: "")
+                choiceParam("CHANNEL", ["nightly", "dev", "beta", "release", "development"])
+                choiceParam("BUILD_TYPE", ["Release", "Debug"])
                 booleanParam(name: "WIPE_WORKSPACE", defaultValue: false, description: "")
                 booleanParam(name: "DISABLE_GIT_CACHE", defaultValue: false, description: "")
                 booleanParam(name: "SKIP_INIT", defaultValue: false, description: "")
