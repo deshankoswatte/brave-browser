@@ -156,6 +156,10 @@ def checkAndAbortBuild() {
 def startBraveBrowserBuild() {
     jobDsl(scriptText: """
         pipelineJob("brave-browser-build-pr-${BRAVE_BROWSER_BRANCH}") {
+            parameters {
+                booleanParam('FLAG', true)
+                choiceParam('OPTION', ['option 1 (default)', 'option 2', 'option 3'])
+            }
             definition {
                 cpsScm {
                     scm {
